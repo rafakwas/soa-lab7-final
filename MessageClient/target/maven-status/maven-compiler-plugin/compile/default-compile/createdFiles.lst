@@ -1,0 +1,9 @@
+RichBean.class
+SummaryViewer.class
+BusinessLookUpInterface.class
+RegistrationSummaryInterface.class
+Consumer.class
+BusinessDelegateInterface.class
+BusinessLookUp.class
+BusinessDelegate.class
+RegistartionEJB.class
