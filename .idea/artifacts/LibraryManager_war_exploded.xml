@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="LibraryManager:war exploded">
+    <output-path>$PROJECT_DIR$/LibraryManager/target/LibraryManager</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="LibraryManager" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="archive" name="LibraryRepository-1.0-SNAPSHOT-client.jar">
+            <element id="artifact" artifact-name="LibraryRepository:ejb-client exploded" />
+          </element>
+          <element id="library" level="project" name="Maven: javax.jms:javax.jms-api:2.0.1" />
+          <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.1" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/LibraryManager/target/LibraryManager/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="LibraryManager/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MessageClientTest:war">
+    <output-path>$PROJECT_DIR$/MessageClientTest/target</output-path>
+    <root id="archive" name="message-client-test.war">
+      <element id="artifact" artifact-name="MessageClientTest:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LibraryManager/LibraryManager.iml" filepath="$PROJECT_DIR$/LibraryManager/LibraryManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibraryRepository/LibraryRepository.iml" filepath="$PROJECT_DIR$/LibraryRepository/LibraryRepository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MessageClientTest/MessageClientTest.iml" filepath="$PROJECT_DIR$/MessageClientTest/MessageClientTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/MessageProducer/MessageProducer.iml" filepath="$PROJECT_DIR$/MessageProducer/MessageProducer.iml" />
       <module fileurl="file://$PROJECT_DIR$/TopicProducer/TopicProducer.iml" filepath="$PROJECT_DIR$/TopicProducer/TopicProducer.iml" />
       <module fileurl="file://$PROJECT_DIR$/TopicSubscriber/TopicSubscriber.iml" filepath="$PROJECT_DIR$/TopicSubscriber/TopicSubscriber.iml" />

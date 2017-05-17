@@ -1,0 +1,8 @@
+data/BookRepositoryRemote.class
+model/Pair.class
+data/BookRepository.class
+model/Book.class
+data/BookListProducerRemote.class
+model/Bookstore.class
+utils/IOUtils.class
+data/BookListProducer.class

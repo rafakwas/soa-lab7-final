@@ -4,8 +4,11 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="ejb" url="file://$PROJECT_DIR$/LibraryRepository" />
+    <file type="web" url="file://$PROJECT_DIR$/LibraryManager" />
     <file type="web" url="file://$PROJECT_DIR$/MessageClient" />
     <file type="web" url="file://$PROJECT_DIR$/MessageClient2" />
+    <file type="web" url="file://$PROJECT_DIR$/MessageClientTest" />
     <file type="web" url="file://$PROJECT_DIR$/MessageProducer" />
     <file type="web" url="file://$PROJECT_DIR$/SOA_lab7_zadanie2_final" />
     <file type="web" url="file://$PROJECT_DIR$/TopicProducer" />
@@ -86,6 +89,9 @@
         <option value="$PROJECT_DIR$/MessageProducer/pom.xml" />
         <option value="$PROJECT_DIR$/MessageClient2/pom.xml" />
         <option value="$PROJECT_DIR$/MessageClient/pom.xml" />
+        <option value="$PROJECT_DIR$/MessageClientTest/pom.xml" />
+        <option value="$PROJECT_DIR$/LibraryRepository/pom.xml" />
+        <option value="$PROJECT_DIR$/LibraryManager/pom.xml" />
       </list>
     </option>
   </component>

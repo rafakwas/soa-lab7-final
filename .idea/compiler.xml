@@ -23,7 +23,10 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="client" />
+        <module name="LibraryManager" />
+        <module name="LibraryRepository" />
         <module name="MessageClient2" />
+        <module name="MessageClientTest" />
         <module name="MessageProducer" />
         <module name="TopicProducer" />
         <module name="TopicSubscriber" />
@@ -31,8 +34,11 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="client" target="1.8" />
+      <module name="LibraryManager" target="1.8" />
+      <module name="LibraryRepository" target="1.8" />
       <module name="MessageClient" target="1.8" />
       <module name="MessageClient2" target="1.8" />
+      <module name="MessageClientTest" target="1.8" />
       <module name="MessageProducer" target="1.7" />
       <module name="SOA_lab7_zadanie2_final" target="1.7" />
       <module name="TopicProducer" target="1.7" />
