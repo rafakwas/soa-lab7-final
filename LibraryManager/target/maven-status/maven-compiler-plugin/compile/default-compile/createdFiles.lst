@@ -4,6 +4,8 @@ controller/FormController.class
 controller/RegistrationBean.class
 controller/PollBean.class
 controller/BookController.class
+mdb/ActionNotifierBean.class
 controller/Login.class
 controller/AuthorizationFilter.class
 controller/BookController$1.class
+controller/BookControllerInterface.class

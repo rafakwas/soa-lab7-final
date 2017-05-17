@@ -7,8 +7,12 @@ import model.Pair;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jms.JMSContext;
@@ -20,37 +24,23 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
-@ManagedBean
-@ViewScoped
+@Stateless
+@SessionScoped
 @Named("bookcontroller")
-public class BookController {
+@Local(BookControllerInterface.class)
+public class BookController implements BookControllerInterface {
     private final static Logger LOGGER = Logger.getLogger(BookController.class.toString());
 
-    @Resource(mappedName = "java:/library/ConfirmationQueue")
-    Queue queue;
-    @Inject
-    JMSContext jmsContext;
     @EJB
     BookRepositoryRemote bookRepositoryRemote;
 
 
-
     private Book book;
-    private List<Book> books;
-
     private String output;
 
     private List<String> authors;
     private List<Pair> titles;
     private String isbn;
-
-    public String getOutput() {
-        return output;
-    }
-
-    public void setOutput(String output) {
-        this.output = output;
-    }
 
     public Book getBook() {
         return book;
@@ -68,8 +58,6 @@ public class BookController {
         book.setReserved(false);
         book.setRented(false);
         bookRepositoryRemote.persist(book);
-        String title = book.getTitleList().get(0).getValue();
-        sendMessage("Book " +title+ " added to library");
     }
 
     public List<Book> getBooks() {
@@ -87,32 +75,37 @@ public class BookController {
         return bookList;
     }
 
-    public void reserveBook(Book book) {
-        bookRepositoryRemote.reserve(book);
-        String title = book.getTitleList().get(0).getValue();
-        sendMessage("Book " +title+ " reserved");
+    public void reserveBook(Book book,String user) {
+        bookRepositoryRemote.reserve(book,user);
+        LOGGER.info(() -> "Book reserved by " + user);
     }
 
-    public void sendMessage(String message) {
-        LOGGER.info(() -> "Message \"" + message + "\" sent");
-        jmsContext.createProducer().send(queue,message);
+    public void rentBook(Book book,String user) {
+        bookRepositoryRemote.rent(book,user);
+        LOGGER.info(() -> "Book rented by " + user);
     }
 
-    public void rentBook(Book book) {
-        bookRepositoryRemote.rent(book);
-        String title = book.getTitleList().get(0).getValue();
-        sendMessage("Book "+title+" rented");
-    }
-
-    public void returning(Book book) {
-        bookRepositoryRemote.returning(book);
-        String title = book.getTitleList().get(0).getValue();
-        sendMessage("Book "+title+" returned");
+    public void returning(Book book,String user) {
+        bookRepositoryRemote.returning(book,user);
+        LOGGER.info(() -> "Book returned by " + user);
     }
 
     public void removeBooks() {
         bookRepositoryRemote.removeBookstore();
-        sendMessage("Books removed");
     }
 
+    @Override
+    public void log() {
+        LOGGER.info(() -> "MDB triggered this!");
+    }
+
+    @Override
+    public List<String> getNotifications() {
+        return bookRepositoryRemote.getNotifications();
+    }
+
+    @Override
+    public List<String> getConfirmations(String user) {
+        return bookRepositoryRemote.getConfirmations(user);
+    }
 }

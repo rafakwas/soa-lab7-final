@@ -16,9 +16,9 @@
         <ui:define name="body">
 
             <h:form id="form">
-                <a4j:poll id="poll" interval="2000" enabled="#{pollBean.pollEnabled}" render="poll,grid" />
+                <a4j:poll id="poll" interval="5000" enabled="#{pollBean.pollEnabled}" render="poll,grid,:datatable,:notifications,:confirmations" />
 
-                <h:panelGrid columns="2" width="80%" id="grid">
+                <h:panelGrid columns="2" width="100%" id="grid">
                     <h:panelGrid columns="1">
                         <h:outputText value="Polling Inactive" rendered="#{not pollBean.pollEnabled}" />
 
@@ -32,14 +32,13 @@
                         <h:outputText id="serverDate" style="font-size:16px" value="Server Date: #{pollBean.date}" />
 
                     </h:panelGrid>
-                </h:panelGrid>
-            </h:form>
 
-            <h:form>
-                <p>Welcome #{sessionScope.username}</p>
-                <h:outputText rendered="#{sessionScope.notification}" value="You will be notified about new books!"/>
-                <h:outputText rendered="#{not sessionScope.notification}" value="You will not be notified!"/>
-                <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+                    <h:panelGrid columns="1">
+                        <p>Welcome #{sessionScope.username}</p>
+                        <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+                    </h:panelGrid>
+
+                </h:panelGrid>
             </h:form>
 
             <h:form id="reg">
@@ -104,13 +103,29 @@
                 </h:column>
                 <h:column>
                     <h:form>
-                        <h:commandButton value="reserve" action="${bookcontroller.reserveBook(_book)}" />
-                        <h:commandButton value="rent" action="${bookcontroller.rentBook(_book)}"/>
-                        <h:commandButton value="return" action="${bookcontroller.returning(_book)}"/>
+                        <h:commandButton value="reserve" action="${bookcontroller.reserveBook(_book,sessionScope.username)}" />
+                        <h:commandButton value="rent" action="${bookcontroller.rentBook(_book,sessionScope.username)}"/>
+                        <h:commandButton value="return" action="${bookcontroller.returning(_book,sessionScope.username)}"/>
                     </h:form>
                 </h:column>
             </h:dataTable>
 
+            <h2>Notifications</h2>
+            <h:outputText rendered="#{sessionScope.notification}" value="You will be notified about new books!"/><br/>
+            <h:outputText rendered="#{not sessionScope.notification}" value="You will not be notified!"/><br/>
+
+            <h:panelGroup id="notifications" rendered="${sessionScope.notification}">
+                <c:forEach items="#{bookcontroller.notifications}" var="_message">
+                    <h:outputText value="#{_message}"/><br/>
+                </c:forEach>
+            </h:panelGroup>
+
+            <h2>Confirmations</h2>
+            <h:panelGroup id="confirmations">
+                <c:forEach items="#{bookcontroller.getConfirmations(sessionScope.username)}" var="_confirmation">
+                    <h:outputText value="#{_confirmation}"/><br/>
+                </c:forEach>
+            </h:panelGroup>
 
 
         </ui:define>
