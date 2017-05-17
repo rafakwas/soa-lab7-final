@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Facelet Title</title>
+</h:head>
+<h:body>
+    <c:forEach items="${sessionScope}" var="attr">
+        ${attr.key}=${attr.value}<br/>
+    </c:forEach>
+
+    <h:form>
+        <p>Welcome #{sessionScope.username}</p>
+        <h:outputText rendered="#{sessionScope.notification}" value="You will be notified about new books!"/>
+        <h:outputText rendered="#{not sessionScope.notification}" value="You will not be notified!"/>
+        <h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
+    </h:form>
+
+
+</h:body>
+</html>

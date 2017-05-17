@@ -1,0 +1,8 @@
+controller/SessionUtils.class
+mdb/ActionConfirmerBean.class
+controller/FormController.class
+controller/RegistrationBean.class
+controller/BookController.class
+controller/Login.class
+controller/AuthorizationFilter.class
+controller/BookController$1.class
