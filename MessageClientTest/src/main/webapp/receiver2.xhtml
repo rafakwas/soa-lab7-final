@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+    <title>richfaces</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</h:head>
+
+<h:body>
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="title">Hello world JSF</ui:define>
+        <ui:define name="body">
+            <h:form id="form">
+                <a4j:poll id="poll" interval="2000" enabled="#{pollBean.pollEnabled}" render="poll,grid" />
+
+                <h:panelGrid columns="2" width="80%" id="grid">
+                    <h:panelGrid columns="1">
+                        <h:outputText value="Polling Inactive" rendered="#{not pollBean.pollEnabled}" />
+
+                        <h:outputText value="Polling Active" rendered="#{pollBean.pollEnabled}" />
+
+                        <a4j:commandButton style="width:120px" id="control" value="#{pollBean.pollEnabled?'Stop':'Start'} Polling"
+                        render="poll, grid">
+                        <a4j:param name="polling" value="#{!pollBean.pollEnabled}" assignTo="#{pollBean.pollEnabled}" />
+                        </a4j:commandButton>
+
+                        <h:outputText id="serverDate" style="font-size:16px" value="Server Date: #{pollBean.date}" />
+
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="1">
+                        <h:outputText value="No messages" rendered="#{empty SummaryViewer.companies}"/>
+                        <c:forEach items="${SummaryViewer.companies}" var="item" varStatus="loop">
+                            <h:outputText value="${item}"/><br/>
+                        </c:forEach>
+                    </h:panelGrid>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
