@@ -2,6 +2,7 @@ controller/SessionUtils.class
 mdb/ActionConfirmerBean.class
 controller/FormController.class
 controller/RegistrationBean.class
+controller/PollBean.class
 controller/BookController.class
 controller/Login.class
 controller/AuthorizationFilter.class
